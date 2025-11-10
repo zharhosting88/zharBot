@@ -29,7 +29,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 12px 16px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: transparent;
   box-shadow: 0 2px 10px rgba(0,0,0,0.4);
 }
 header h1 {
@@ -67,7 +67,8 @@ header button {
   background: rgba(88,166,255,0.1);
 }
 .menu button.active {
-  background: var(--accent);
+  background: transparent;
+  border-bottom: 1px solid var(--accent);
   color: #fff;
 }
 
@@ -190,17 +191,15 @@ const msgInput = document.getElementById('msgInput');
 const sendBtn = document.getElementById('sendBtn');
 let currentMode = 'gemini';
 
-// Ganti mode
 document.querySelectorAll('.menu button').forEach(btn=>{
   btn.onclick=()=>{
     document.querySelectorAll('.menu button').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     currentMode = btn.dataset.mode;
-    addMessage('bot', `<i class='fas fa-gear'></i> Mode diganti ke: <b>${btn.textContent}</b>`);
+    addMessage('bot', `<i class="fa-solid fa-wrench"></i> Mode diganti ke: <b>${btn.textContent}</b>`);
   };
 });
 
-// Tambah pesan
 function addMessage(sender, text, media=null){
   const div=document.createElement('div');
   div.className='message '+sender;
@@ -214,7 +213,6 @@ function addMessage(sender, text, media=null){
   chatBox.scrollTop=chatBox.scrollHeight;
 }
 
-// Fungsi kirim pesan
 sendBtn.onclick = sendMessage;
 msgInput.addEventListener('keypress',e=>{
   if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); sendMessage(); }
@@ -255,7 +253,7 @@ async function sendMessage(){
         return;
       } else res='Gagal generate video.';
     }
-  } catch(e){ res='❌ Error: '+e.message; }
+  } catch(e){ res='X Error: '+e.message; }
 
   removeTyping();
   addMessage('bot', res);
