@@ -229,7 +229,7 @@ async function sendMessage(){
   let res='';
   try {
     if(currentMode==='gemini'){
-      const r=await fetch(`https://api.siputzx.my.id/api/ai/gpt3?prompt=${encodeURIComponent('Kamu adalah Zam-AI, asisten AI ahli coding & teknologi, gunakan bahasa Indonesia.')} &content=${encodeURIComponent(text)}`);
+      const r=await fetch(`https://api.siputzx.my.id/api/ai/gpt3?prompt=${encodeURIComponent('Kamu adalah zharAi, asisten AI ahli coding & teknologi, gunakan bahasa Indonesia.')} &content=${encodeURIComponent(text)}`);
       const d=await r.json(); res=d.data||'Tidak ada respons.';
     } 
     else if(currentMode==='michelle'){
